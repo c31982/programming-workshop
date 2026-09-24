@@ -1,0 +1,54 @@
+# ============================== Java ==============================
+
+*.class 
+*.jar 
+*.war 
+*.ear
+
+# Compilación
+
+build/ 
+dist/ 
+target/ 
+out/
+
+# Compiled output
+bin/
+**/bin/
+
+# ============================== NetBeans ==============================
+
+**/nbproject/private/ 
+**/nbbuild/
+**/build/
+**/dist/
+**/nbdist/ 
+**/.nb-gradle/
+
+# ============================== IntelliJ IDEA ==============================
+
+.idea/
+*.iml 
+*.ipr 
+*.iws
+
+# ============================== VS Code ==============================
+
+.vscode/
+
+# ============================== Sistema operativo ==============================
+
+# Windows
+Thumbs.db 
+Desktop.ini
+
+# macOS
+.DS_Store
+
+# ============================== Archivos temporales ==============================
+*.log 
+*.tmp 
+*.temp 
+*.bak 
+*.swp
+*~
