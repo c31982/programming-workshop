@@ -16,19 +16,18 @@ public class Ejercicio01_SistemaAnalisisVentas {
 
         Scanner entrada = new Scanner(System.in);
         StringBuilder reporte = new StringBuilder();
-        
-        
+
         reporte.append("\n=========== REPORTE DE VENTAS ===========\n\n");
 
         double ventas[] = new double[5];
 
-        double total = 0.00, promedio = 0.00, ventaMayor, ventaMenor,aux;
+        double total = 0.00, promedio = 0.00, ventaMayor, ventaMenor, aux;
         int contMayor = 0, contMenor = 0, contIgual = 0, posicionMayor = 0, posicionMenor = 0, contVueltas = 0;
 
         for (int i = 0; i < ventas.length; i++) {
 
             do {
-                System.out.print("\nIngrese la venta del día " + (i + 1) + ": ");
+                System.out.print("\nIngrese la venta del dia " + (i + 1) + ": ");
                 ventas[i] = entrada.nextDouble();
                 if (ventas[i] <= 0) {
                     System.out.println("\nLa venta debe ser mayor a 0");
@@ -59,8 +58,8 @@ public class Ejercicio01_SistemaAnalisisVentas {
             } else {
                 contIgual++;
             }
-            
-            reporte.append(String.format("Día %2d: S/. %.2f%n",(i+1),ventas[i]));
+
+            reporte.append(String.format("Dia %2d: S/. %.2f%n", (i + 1), ventas[i]));
 
         }
 
@@ -78,22 +77,27 @@ public class Ejercicio01_SistemaAnalisisVentas {
             }
         } while (contVueltas > 0);
 
-
         for (double venta : ventas) {
             System.out.print(venta + " ");
         }
 
-        reporte.append(String.format("%n%n------------- RESUMEN ------------------%n%n"));
-        reporte.append(String.format("Total vendido: %10.2f%n",total));
-        reporte.append(String.format("Promedio de ventas: %10.2f%n%n%n",promedio));
-        reporte.append(String.format("Venta mayor: %10.2f%n%n",ventaMayor));
-        reporte.append(String.format("Día(s) de venta mayor: %10d%n%n%n",posicionMayor));
-        reporte.append(String.format("Venta menor: %10.2f%n%n",ventaMenor));
-        reporte.append(String.format("Día(s) de venta menor: %10d%n%n%n",posicionMenor));
-        reporte.append(String.format("Días sobre el promedio: %10d%n",contMayor));
-        reporte.append(String.format("Días bajo el promedio: %10d%n",contMenor));
-        reporte.append(String.format("Días iguales al promedio: %10d%n%n%n",contIgual));
-        reporte.append("========================================");
+        reporte.append(String.format("%n%n"));
+        reporte.append("------------- RESUMEN DE VENTAS -------------\n\n");
+
+        reporte.append(String.format("%-29s %12.2f%n", "Total vendido:", total));
+        reporte.append(String.format("%-29s %12.2f%n%n", "Promedio de ventas:", promedio));
+
+        reporte.append(String.format("%-29s %12.2f%n", "Venta mayor:", ventaMayor));
+        reporte.append(String.format("%-29s %12d%n%n", "Día de venta mayor:", posicionMayor));
+
+        reporte.append(String.format("%-29s %12.2f%n", "Venta menor:", ventaMenor));
+        reporte.append(String.format("%-29s %12d%n%n", "Día de venta menor:", posicionMenor));
+
+        reporte.append(String.format("%-29s %12d%n", "Días sobre el promedio:", contMayor));
+        reporte.append(String.format("%-29s %12d%n", "Días bajo el promedio:", contMenor));
+        reporte.append(String.format("%-29s %12d%n%n", "Días iguales al promedio:", contIgual));
+
+        reporte.append("--------------------------------------------");
 //        reporte.append(String.format("Total vendido: %-20s%.2f%n"," ",total));
 //        reporte.append(String.format("Promedio de ventas: %-20s%.2f%n%n%n"," ",promedio));
 //        reporte.append(String.format("Venta mayor: %-20s%.2f%n%n","",ventaMayor));
@@ -104,10 +108,7 @@ public class Ejercicio01_SistemaAnalisisVentas {
 //        reporte.append(String.format("Días bajo el promedio: %-20s%d%n"," ",contMenor));
 //        reporte.append(String.format("Días iguales al promedio: %-20s%d%n%n%n"," ",contIgual));
 //        reporte.append("========================================");
-        
-        
 
-        
         System.out.println(reporte);
 
     }
