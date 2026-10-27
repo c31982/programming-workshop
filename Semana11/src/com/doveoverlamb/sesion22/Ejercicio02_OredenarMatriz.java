@@ -32,35 +32,27 @@ public class Ejercicio02_OredenarMatriz {
         }
         System.out.println("\n MATRIZ ORDENADO COLUMNA");
 
-        int[] vector = new int[3];
+        int[] vector = new int[matriz2.length];
 
         for (int f = 0; f < matriz2.length; f++) {
-//            int indice = 0;
             for (int c = 0, indice = 0; c < matriz2[f].length; c++) {
-
                 vector[indice++] = matriz2[c][f];
-//                 System.out.print(matriz[c][f]+" ");
             }
             Arrays.sort(vector);
             for (int k = 0, indice = 0; k < vector.length; k++) {
                
-                    matriz[k][c] = vector[indice++];
+                    matriz2[k][f] = vector[indice++];
                 }
             }
 
-//            for (int nume : vector) {
-//                System.out.print(nume +" ");
-//            }
+        
 
+        for (int[] fila : matriz2) {
+
+            for (int elemento : fila) {
+                System.out.print(elemento + " ");
+            }
             System.out.print("\n");
         }
-
-//        for (int[] fila : matriz) {
-//
-//            for (int elemento : fila) {
-//                System.out.print(elemento + " ");
-//            }
-//            System.out.print("\n");
-//        }
     }
 }
