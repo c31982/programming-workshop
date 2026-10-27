@@ -16,13 +16,13 @@ public class Ejercicio01_Reporte_ASCII {
         Scanner entrada = new Scanner(System.in);
 
         StringBuilder reporte = new StringBuilder();
-
-        reporte.append("##################### REPORTE DE NOTAS #####################\n");
+        StringBuilder lista = new StringBuilder();
 
         boolean esEntero;
         boolean valido;
 
         String[] alumnos;
+        int[] edades, grados;
         double[][] notas;
         double[] promedios;
         double promedioTotal = 0;
@@ -62,6 +62,8 @@ public class Ejercicio01_Reporte_ASCII {
         } while (cantidadNotas < 0);
 
         alumnos = new String[cantidadRegistros];
+        edades = new int[cantidadRegistros];
+        grados = new int[cantidadRegistros];
         notas = new double[cantidadRegistros][cantidadNotas];
         promedios = new double[cantidadRegistros];
 
@@ -75,39 +77,82 @@ public class Ejercicio01_Reporte_ASCII {
                     System.out.println("Debe ingresar un nombre adecuado");
                 }
             } while (!valido);
+
+            do {
+                System.out.printf("Ingrese la edad del alumno %d: ", orden);
+                valido = entrada.hasNextInt();
+                edades[i] = valido ? entrada.nextInt() : -1;
+                if (edades[i] < 0) {
+                    System.out.println("Debe ingresar una edad correcta");
+                }
+                entrada.nextLine();
+            } while (!valido);
+            do {
+                System.out.printf("Ingrese el grado del alumno %d: ", orden);
+                valido = entrada.hasNextInt();
+                grados[i] = valido ? entrada.nextInt() : -1;
+                if (grados[i] < 0) {
+                    System.out.println("Debe ingresar un grado correcto");
+                }
+                entrada.nextLine();
+            } while (!valido);
             orden++;
 
-            for (int j = 0; j < notas.length; j++) {
-                int sum = 0;
-                for (int k = 0, n = 1; k < notas[j].length; k++) {
-                    do {
-                        String note = (k != (notas[j].length) - 1)
-                                ? String.format("Ingrese la nota de PC%d: ", n)
-                                : "Ingrese la nota del EF: ";
+            int sum = 0;
+            for (int k = 0, n = 1; k < notas[i].length; k++) {
 
-                        System.out.print(note);
-                        notas[j][k] = entrada.nextDouble();
-                        if (notas[j][k] < 0 || notas[j][k] > 20) {
-                            System.out.println("Debe ingresar una nota entre 0 y 20");
-                        }
+                do {
+                    String note = (k != (notas[i].length) - 1)
+                            ? String.format("Ingrese la nota de PC%d: ", n)
+                            : "Ingrese la nota del EF: ";
 
-                    } while (notas[j][k] < 0 || notas[j][k] > 20);
-                    n++;
-                    sum += notas[j][k];
-                }
+                    System.out.print(note);
+                    notas[i][k] = entrada.nextDouble();
+                    if (notas[i][k] < 0 || notas[i][k] > 20) {
+                        System.out.println("Debe ingresar una nota entre 0 y 20");
+                    }
+                    entrada.nextLine();
+                } while (notas[i][k] < 0 || notas[i][k] > 20);
 
-                promedios[i] = sum / notas[j].length;
-
-                promedioTotal += promedios[i];
-
+                n++;
+                sum += notas[i][k];
             }
+
+            promedios[i] = sum / notas[i].length;
+
+            promedioTotal += promedios[i];
 
         }
 
-        reporte.append("############################################################\n");
-        reporte.append(String.format("%-30s%30.2f%n", "PROMEDIO TOTAL:", promedioTotal));
-        reporte.append("############################################################");
-        
+        for (int i = 0; i < cantidadRegistros; i++) {
+
+            String registro = String.format("%n%-40s %4s %5s ",
+                    alumnos[i], edades[i], grados[i]);
+            for (int j = 0; j < cantidadNotas; j++) {
+
+                registro += String.format("%4s ",
+                        notas[i][j]);
+            }
+              registro += String.format("%7s",
+                        promedios[i]);
+
+            lista.append(registro+"\n");
+        }
+
+        String cabecera = String.format("%n%-40s %4s %5s %4s %4s %4s %4s %7s%n%n",
+                "NOMBRE", "EDAD", "GRADO",
+                "PC1", "PC2", "PC3", "EF", "PROM");
+
+        reporte.append("#".repeat(80) + "\n\n");
+        reporte.append("#".repeat(31) + " REPORTE DE NOTAS " + "#".repeat(31) + "\n\n");
+        reporte.append("#".repeat(80) + "\n");
+        reporte.append(cabecera);
+        reporte.append("#".repeat(80) + "\n");
+        reporte.append(lista);
+        reporte.append("#".repeat(80) + "\n");
+        reporte.append(String.format("%n%-30s%30.2f%n%n", "PROMEDIO TOTAL:", promedioTotal));
+        reporte.append("#".repeat(80) + "\n");
+
         System.out.println(reporte);
         entrada.close();
     }
