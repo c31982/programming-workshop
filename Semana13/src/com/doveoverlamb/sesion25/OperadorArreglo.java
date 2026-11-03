@@ -47,7 +47,7 @@ public class OperadorArreglo {
         
         System.arraycopy(arreglo, 0, copia, 0,arreglo.length);
         
-        
+        return copia;
         
     }
 }
