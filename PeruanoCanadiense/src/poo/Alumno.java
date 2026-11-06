@@ -3,7 +3,7 @@ package poo;
 public class Alumno {
 
     private final String codigo;
-    private String dni;
+    private final String dni;
     private String nombres;
     private String apellidos;
     private int edad;
@@ -14,12 +14,21 @@ public class Alumno {
 
     public Alumno(String dni, String nombres, String apellidos, int edad, String nombreApoderado, String telefonoApoderado) {
         this.codigo = asignarCodigo();
-        this.dni = dni;
-        this.nombres = nombres;
-        this.apellidos = apellidos;
-        this.edad = edad;
-        this.nombreApoderado = nombreApoderado;
-        this.telefonoApoderado = telefonoApoderado;
+        if (dni == null || dni.isBlank()) {
+            throw new IllegalArgumentException(
+                    "El DNI del alumno es obligatorio.");
+        }
+        if (dni.length() > 8 || dni.length() < 8) {
+            throw new IllegalArgumentException("La cantidad de caracteres de DNI deben ser 8");
+        }
+
+        this.dni = dni.strip();
+
+        setNombres(nombres);
+        setApellidos(apellidos);
+        setEdad(edad);
+        setNombreApoderado(nombreApoderado);
+        setTelefonoApoderado(telefonoApoderado);
     }
 
     private static String asignarCodigo() {
@@ -27,28 +36,49 @@ public class Alumno {
         return "U" + correlativo;
     }
 
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
     public void setNombres(String nombres) {
-        this.nombres = nombres;
+        if (nombres == null || nombres.isBlank()) {
+            throw new IllegalArgumentException(
+                    "Los nombres son obligatorios.");
+        }
+
+        this.nombres = nombres.strip();
     }
 
     public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+        if (apellidos == null || apellidos.isBlank()) {
+            throw new IllegalArgumentException(
+                    "Los apellidos son obligatorios.");
+        }
+
+        this.apellidos = apellidos.strip();
     }
 
     public void setEdad(int edad) {
+        if (edad < 0) {
+            throw new IllegalArgumentException(
+                    "La edad no puede ser negativa.");
+        }
+
         this.edad = edad;
     }
 
     public void setNombreApoderado(String nombreApoderado) {
-        this.nombreApoderado = nombreApoderado;
+        if (nombreApoderado == null || nombreApoderado.isBlank()) {
+            throw new IllegalArgumentException(
+                    "El nombre del apoderado es obligatorio.");
+        }
+
+        this.nombreApoderado = nombreApoderado.strip();
     }
 
     public void setTelefonoApoderado(String telefonoApoderado) {
-        this.telefonoApoderado = telefonoApoderado;
+        if (telefonoApoderado == null || telefonoApoderado.isBlank()) {
+            throw new IllegalArgumentException(
+                    "El teléfono del apoderado es obligatorio.");
+        }
+
+        this.telefonoApoderado = telefonoApoderado.strip();
     }
 
     public String getCodigo() {
