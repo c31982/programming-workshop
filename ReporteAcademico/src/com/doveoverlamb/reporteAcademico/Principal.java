@@ -11,6 +11,18 @@ public class Principal {
      */
     
     public static void main(String args[]) {
+        
+        Alumno al1 = new Alumno("Al001","Omar Machuca");
+        Alumno al2 = new Alumno("Al002","Sandra Machuca");
+        
+        
+        al1.asignarNotas(15.00,17.00,14.00,18.00);
+        
+        
+        ReporteAcademico.mostrarAlumno(al1);
+        
+        
+        
 
     }
 }

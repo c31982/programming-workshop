@@ -32,27 +32,29 @@ public class Alumno {
         return nombre;
     }
 
-    private boolean validaNota(int nota) {
-       
-        if()
-        
+    private boolean validaNota(double nota) {
+
         if (nota > 20 || nota < 0) {
-            return false;
-            //throw new IllegalArgumentException("La nota debe estar entre 0 y 20");    
+
+            throw new IllegalArgumentException("La nota debe estar entre 0 y 20");
 
         }
 
         return true;
     }
 
-    public void asignarNotas(int pc1, int pc2, int pc3, int ef) {
+    public void asignarNotas(double pc1, double pc2, double pc3, double ef) {
 
-        
-            
+        if (validaNota(pc1) && validaNota(pc2) && validaNota(pc3) && validaNota(ef)) {
+            this.notas[0] = pc1;
+            this.notas[1] = pc2;
+            this.notas[2] = pc3;
+            this.notas[3] = ef;
         }
-    
 
-    public void asignarNotas(int[] valores) {
+    }
+
+    public void asignarNotas(double[] valores) {
 
         if (valores.length == 0) {
             throw new IllegalArgumentException("Es necesario que exista el arreglo de notas");
@@ -72,8 +74,28 @@ public class Alumno {
     }
 
 // Implementa obtenerPromedio() con retorno double.
+    public double obtenerPromedio(double[] valores) {
+        double suma = 0;
+        for (double nota : valores) {
+            suma += nota;
+        }
+
+        return suma / valores.length;
+    }
+
     /*
 Actividad 3. Sobrescritura simple (10 min)
-Incorpora @Override public String toString() para devolver código y nombre. No crees una superclase propia.
+Incorpora @Override public String toString() para devolver código y nombre. 
+    No crees una superclase propia.
      */
+    @Override
+
+    public String toString() {
+
+        return """
+               Codigo : %s
+               Nombre : %s
+               """.formatted(this.codigo, this.nombre);
+    }
+
 }
