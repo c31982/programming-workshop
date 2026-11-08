@@ -31,6 +31,10 @@ public class Alumno {
     public String getNombre() {
         return nombre;
     }
+    
+    public double [] getNotas() {
+        return notas;
+    }
 
     private boolean validaNota(double nota) {
 
@@ -44,6 +48,8 @@ public class Alumno {
     }
 
     public void asignarNotas(double pc1, double pc2, double pc3, double ef) {
+
+        notas = new double[4];
 
         if (validaNota(pc1) && validaNota(pc2) && validaNota(pc3) && validaNota(ef)) {
             this.notas[0] = pc1;
@@ -70,6 +76,7 @@ public class Alumno {
         for (int i = 0; i < valores.length; i++) {
             this.notas[i] = valores[i];
         }
+        System.arraycopy(valores, 0, notas, 0, valores.length);
 
     }
 
@@ -91,11 +98,18 @@ Incorpora @Override public String toString() para devolver código y nombre.
     @Override
 
     public String toString() {
+        
+        StringBuilder reporte = new StringBuilder();
+        
+        for (double nota : this.notas) {
+            reporte.append(nota);
+        }
 
         return """
                Codigo : %s
                Nombre : %s
-               """.formatted(this.codigo, this.nombre);
+               Notas  : %s
+               """.formatted(this.codigo, this.nombre,reporte);
     }
 
 }
