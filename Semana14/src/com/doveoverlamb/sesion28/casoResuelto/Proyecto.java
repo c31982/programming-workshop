@@ -23,14 +23,6 @@ public class Proyecto {
         this.codigo = asignarCodigo();
 
     }
-    
-    public void agregar(Proyecto proyecto, Proyecto[] proyectos){
-        
-        for (int i = 0; i < proyectos.length; i++) {
-            
-        }
-        
-    }
 
     public static String asignarCodigo() {
         correlativo++;
@@ -69,5 +61,27 @@ public class Proyecto {
         }
         return this.integrantes = integrantes;
     }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public double getPresupuesto() {
+        return presupuesto;
+    }
+
+    public int getIntegrantes() {
+        return integrantes;
+    }
+
+    public String getFecha() {
+        return fecha;
+    }
+    
+    
 
 }
